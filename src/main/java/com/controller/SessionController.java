@@ -150,7 +150,6 @@ public class SessionController {
 				try {
 					if(passwordEncoder.matches(password , user.getPassword())) {
 					
-//				if(user.getPassword().equals(password)) {
 						System.out.println(user.getFirstName() + " Verified");
 						session.setAttribute("user", user);
 						model.addAttribute("user",user);
