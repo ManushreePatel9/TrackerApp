@@ -8,7 +8,6 @@ WORKDIR /app
 COPY pom.xml .
 
 # Step 4: Download dependencies (optional optimization)
-RUN mvn dependency:go-offline
 
 # Step 5: Copy all source files
 COPY src ./src
@@ -19,7 +18,7 @@ RUN mvn clean package -DskipTests
 # Step 7: Use a smaller JDK image for running the app
 FROM amazoncorretto:21-alpine
 
-WORKDIR /app
+WORKDIR /usr/local/tomcat/webapps/
 COPY --from=builder /app/target/TrackerApp-0.0.1-SNAPSHOT.war app.war
 
 EXPOSE 8080
